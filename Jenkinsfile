@@ -14,7 +14,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         container('docker'){
-          sh 'docker build -t jefferyfry/spring-petclinic:latest .'
+          sh 'docker build -t anandcpm/spring-petclinic:latest .'
         }
       }
     }
@@ -23,7 +23,7 @@ pipeline {
         container('docker'){
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-            sh 'docker push jefferyfry/spring-petclinic:latest'
+            sh 'docker push anandcpm/spring-petclinic:latest'
           }
         }
       }
